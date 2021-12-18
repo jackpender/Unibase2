@@ -4,17 +4,22 @@
 
     <item
         android:id="@+id/item_cancel"
-        android:title="@string/menu_cancelCollege"
+        android:title="@string/menu_cancelCourse"
         app:showAsAction="always"/>
 
     <item
-        android:id="@+id/item_deleteCollege"
-        android:title="@string/delete_college"
+        android:id="@+id/item_editCourse"
+        android:title="@string/edit_course"
         app:showAsAction="always" />
 
     <item
-        android:id="@+id/item_addCourse"
+        android:id="@+id/item_deleteCourse"
+        android:title="@string/button_deleteCourse"
+        app:showAsAction="always" />
+
+    <item
+        android:id="@+id/item_addModule"
         android:icon="@android:drawable/ic_menu_add"
-        android:title="@string/add_course"
+        android:title="@string/add_module"
         app:showAsAction="always" />
 </menu>

@@ -12,4 +12,24 @@
     <string name="change_college_image">Change college image</string>
     <string name="button_location">Set Location</string>
     <string name="title_activity_map">MapsActivity</string>
+    <string name="add_course">AddCourse</string>
+    <string name="hint_courseTitle">Course Title</string>
+    <string name="hint_courseDescription">Course Description</string>
+    <string name="hint_courseYears">No. of Years</string>
+    <string name="button_addCourse">Add Course</string>
+    <string name="enter_course_title"> Please enter a Course Title </string>
+    <string name="save_course"> Save Course </string>
+    <string name="menu_cancelCourse">Cancel</string>
+    <string name="add_module">AddModule</string>
+    <string name="button_addModule">Add Module</string>
+    <string name="hint_moduleTitle">Module Title</string>
+    <string name="hint_moduleDescription">Module Description</string>
+    <string name="hint_moduleCredits">No. of Credits</string>
+    <string name="save_module"> Save Module </string>
+    <string name="enter_module_title"> Please enter a Module Title </string>
+    <string name="edit_course">Edit Course</string>
+    <string name="button_deleteCollege">Delete College</string>
+    <string name="delete_college">Delete College</string>
+    <string name="edit_module">Edit Module</string>
+    <string name="button_deleteCourse">Delete Course</string>
 </resources>

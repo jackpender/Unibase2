@@ -11,17 +11,23 @@ import androidx.activity.result.contract.ActivityResultContracts
 import com.google.android.material.snackbar.Snackbar
 import com.squareup.picasso.Picasso
 import ie.wit.unibase2.R
+import ie.wit.unibase2.adapters.CourseAdapter
 import ie.wit.unibase2.databinding.ActivityCollegeBinding
+import ie.wit.unibase2.databinding.ActivityCourseListBinding
 import ie.wit.unibase2.helpers.showImagePicker
 import ie.wit.unibase2.main.MainApp
 import ie.wit.unibase2.models.CollegeModel
+import ie.wit.unibase2.models.CourseModel
 import ie.wit.unibase2.models.Location
 import timber.log.Timber.i
 
 class CollegeActivity : AppCompatActivity() {
     private lateinit var binding: ActivityCollegeBinding
+//    private lateinit var bindingCourse: ActivityCourseListBinding
     var college = CollegeModel()
     lateinit var app: MainApp
+
+    private lateinit var refreshIntentLauncher : ActivityResultLauncher<Intent>
 
     private lateinit var imageIntentLauncher : ActivityResultLauncher<Intent>
 
@@ -32,6 +38,7 @@ class CollegeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCollegeBinding.inflate(layoutInflater)
+//        bindingCourse = ActivityCourseListBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         var edit = false
@@ -65,6 +72,7 @@ class CollegeActivity : AppCompatActivity() {
             } else {
                 if (edit) {
                     app.colleges.update(college.copy())
+                    i("${college}")
                 } else {
                     app.colleges.create(college.copy())
                     i("${college}")
@@ -105,6 +113,7 @@ class CollegeActivity : AppCompatActivity() {
 
         registerImagePickerCallback()
         registerMapCallback()
+//        registerRefreshCallback()
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
@@ -117,9 +126,20 @@ class CollegeActivity : AppCompatActivity() {
             R.id.item_cancel -> {
                 finish()
             }
+            R.id.item_addCourse -> {
+                i("Add Course Button Pressed")
+                val launcherIntent = Intent(this, CourseActivity::class.java)
+                refreshIntentLauncher.launch(launcherIntent)
+            }
         }
         return super.onOptionsItemSelected(item)
     }
+
+//    private fun registerRefreshCallback() {
+//        refreshIntentLauncher =
+//            registerForActivityResult(ActivityResultContracts.StartActivityForResult())
+//            { bindingCourse.recyclerView.adapter?.notifyDataSetChanged() }
+//    }
 
     private fun registerImagePickerCallback() {
         imageIntentLauncher =
@@ -160,4 +180,23 @@ class CollegeActivity : AppCompatActivity() {
                 }
             }
     }
+
+    fun getId() : Long {
+        var strId : String? // String to hold user input
+        var searchId : Long // Long to hold converted id
+        print("Enter id to Search/Update : ")
+        strId = readLine()!!
+        searchId = if (strId.toLongOrNull() != null && !strId.isEmpty())
+            strId.toLong()
+        else
+            -9
+        return searchId
+    }
+
+    fun search(id: Long) : CollegeModel? {
+        var foundCollege = app.colleges.findOne(id)
+        return foundCollege
+    }
+
+//    private fun register
 }

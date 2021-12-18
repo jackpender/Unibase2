@@ -4,10 +4,9 @@ import android.os.Parcelable
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class CourseModel (
+data class ModuleModel(
     var id: Long = 0,
     var title: String = "",
     var description: String = "",
-    var years: String = "0",
-    var modules: ArrayList<ModuleModel> = ArrayList<ModuleModel>()
-) : Parcelable
+    var credits: String = "0"
+): Parcelable
