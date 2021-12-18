@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Unibase2</string>
+    <string name="button_addCollege">Add College</string>
+    <string name="hint_collegeTitle">College Title</string>
+    <string name="hint_collegeDescription">Description </string>
+    <string name="menu_addCollege">Add</string>
+    <string name="menu_cancelCollege">Cancel</string>
+    <string name="enter_college_title"> Please enter a College Title </string>
+    <string name="save_college"> Save College </string>
+    <string name="button_addImage"> Add Image </string>
+    <string name="select_college_image">Select college image</string>
+    <string name="change_college_image">Change college image</string>
+    <string name="button_location">Set Location</string>
+    <string name="title_activity_map">MapsActivity</string>
+</resources>
