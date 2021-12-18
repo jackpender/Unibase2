@@ -8,24 +8,40 @@ import android.view.MenuItem
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.snackbar.Snackbar
 import ie.wit.unibase2.R
 import ie.wit.unibase2.adapters.CollegeAdapter
 import ie.wit.unibase2.adapters.CollegeListener
 import ie.wit.unibase2.databinding.ActivityCollegeListBinding
+import ie.wit.unibase2.databinding.CardCollegeBinding
 import ie.wit.unibase2.main.MainApp
 import ie.wit.unibase2.models.CollegeModel
+import ie.wit.unibase2.models.CourseModel
+import ie.wit.unibase2.models.generateRandomId
+import timber.log.Timber.i
+
+var collegeModel = CollegeModel()
+var collegeId = collegeModel.id
 
 class CollegeListActivity : AppCompatActivity(), CollegeListener {
 
     lateinit var app: MainApp
     private lateinit var binding: ActivityCollegeListBinding
+    private lateinit var bindingCard: CardCollegeBinding
 
     private lateinit var refreshIntentLauncher : ActivityResultLauncher<Intent>
+
+//    var collegeModel = CollegeModel()
+//    var collegeId = collegeModel.id
+    var collegeId1 = collegeId
+    var collegeTitle = collegeModel.title
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityCollegeListBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        bindingCard = CardCollegeBinding.inflate(layoutInflater)
 
         app = application as MainApp
 
@@ -35,6 +51,17 @@ class CollegeListActivity : AppCompatActivity(), CollegeListener {
 
         binding.toolbar.title = title
         setSupportActionBar(binding.toolbar)
+
+//        bindingCard.btnDeleteCollege.setOnClickListener() {
+//            var foundCollege = app.colleges.findOne(collegeId1)
+//            i("Found College: ${collegeId1}")
+////            course.id = generateRandomId()
+////            course.title = binding.courseTitle.text.toString()
+////            course.description = binding.courseDescription.text.toString()
+////            course.years = binding.courseYears.text.toString()
+////            setResult(RESULT_OK)
+////            finish()
+//        }
 
         loadColleges()
 
@@ -57,10 +84,16 @@ class CollegeListActivity : AppCompatActivity(), CollegeListener {
     }
 
     override fun onCollegeClick(college: CollegeModel) {
-        val launcherIntent = Intent(this, CollegeActivity::class.java)
-        launcherIntent.putExtra("college_edit", college)
+        collegeId = college.id
+        i("${collegeId}")
+        val launcherIntent = Intent(this, CourseListActivity::class.java)
+//        launcherIntent.putExtra("college_edit", college)
         refreshIntentLauncher.launch(launcherIntent)
     }
+
+//    fun addCourse(){
+//        i("${collegeId}")
+//    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         binding.recyclerView.adapter?.notifyDataSetChanged()
